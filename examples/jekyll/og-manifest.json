@@ -1,0 +1,24 @@
+---
+# Place this file at your Jekyll site root. Jekyll renders it to
+# _site/og-manifest.json at build time (the front-matter block below is what
+# makes Jekyll process it). Then, as a post-build CI step:
+#
+#   ogcards build --config ogcards.toml \
+#                  --manifest _site/og-manifest.json \
+#                  --out-dir _site
+#
+# Point your og:image meta tag at the same path, e.g.
+#   /assets/og/posts/{{ page.slug }}.png
+---
+{
+  "cards": [
+    {%- for post in site.posts %}
+    {
+      "title": {{ post.title | jsonify }},
+      "subtitle": "{{ post.date | date: '%B %-d, %Y' }}",
+      "template": "post",
+      "out": "assets/og/posts/{{ post.slug }}.png"
+    }{%- unless forloop.last %},{%- endunless %}
+    {%- endfor %}
+  ]
+}

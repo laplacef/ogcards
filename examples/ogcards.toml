@@ -1,0 +1,13 @@
+[canvas]
+width = 1200
+height = 630
+background = "#ffffff"
+
+[templates.post]
+title_size = 64
+title_color = "#1a1a1a"
+meta_size = 28
+meta_color = "#535358"
+accent = "#0645ad"
+padding = 80
+max_title_lines = 3

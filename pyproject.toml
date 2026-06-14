@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ogcards"
+version = "0.1.0"
+description = "Build-time Open Graph card generator for any static site. Manifest in, PNGs out, one dependency."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE", "src/ogcards/fonts/OFL.txt"]
+authors = [{ name = "Francisco Laplace" }]
+keywords = ["open-graph", "og-image", "social-card", "static-site", "pillow", "ssg"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Software Development :: Build Tools",
+    "Typing :: Typed",
+]
+dependencies = ["pillow>=10.0"]
+
+[project.urls]
+Homepage = "https://github.com/laplacef/ogcards"
+Source = "https://github.com/laplacef/ogcards"
+Issues = "https://github.com/laplacef/ogcards/issues"
+
+[project.scripts]
+ogcards = "ogcards.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ogcards"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+strict = true
+files = ["src", "tests"]

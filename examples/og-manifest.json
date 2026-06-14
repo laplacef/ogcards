@@ -1,0 +1,22 @@
+{
+  "cards": [
+    {
+      "title": "Effectively Communicating with Non-Technical Stakeholders",
+      "subtitle": "June 11, 2026",
+      "template": "post",
+      "out": "assets/og/posts/communicating-with-stakeholders.png"
+    },
+    {
+      "title": "Short Title",
+      "subtitle": "June 13, 2026",
+      "template": "post",
+      "out": "assets/og/posts/short.png"
+    },
+    {
+      "title": "A Very Long Title That Should Exercise the Auto-Fit and Wrapping Logic Across Several Lines and Eventually Force an Ellipsis When It Runs Out of Room",
+      "subtitle": "June 1, 2026",
+      "template": "post",
+      "out": "assets/og/posts/long.png"
+    }
+  ]
+}
