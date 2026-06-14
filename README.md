@@ -47,15 +47,18 @@ max_title_lines = 3
 {
   "cards": [
     {
+      "kicker": "Blog",
       "title": "Your Post Title",
-      "subtitle": "June 11, 2026",
+      "subtitle": "An optional one-line description",
+      "footer": "example.com",
+      "label": "June 11, 2026",
       "out": "assets/og/posts/your-post.png"
     }
   ]
 }
 ```
 
-`out` is relative to `--out-dir`, and a card's `template` defaults to `post`.
+Only `title` and `out` are required. `kicker` is a small tracked label above the title; `footer` and `label` sit bottom-left and bottom-right under a rule. `out` is relative to `--out-dir`; `template` defaults to `post`. The theme also supports an inset panel (`[canvas]` `panel_background`/`panel_border`) and a serif title via the bundled `[fonts] title = "SourceSerif4Display-Bold.ttf"`.
 
 ## Static sites
 
