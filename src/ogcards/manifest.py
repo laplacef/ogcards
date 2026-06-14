@@ -22,6 +22,9 @@ class Card:
     title: str
     out: str
     subtitle: str | None = None
+    kicker: str | None = None
+    footer: str | None = None
+    label: str | None = None
     template: str = "post"
 
 
@@ -57,10 +60,21 @@ def _card(index: int, d: Any) -> Card:
     out = d.get("out")
     if not isinstance(out, str) or not out.strip():
         raise ManifestError(f"cards[{index}].out is required and must be a non-empty string")
-    subtitle = d.get("subtitle")
-    if subtitle is not None and not isinstance(subtitle, str):
-        raise ManifestError(f"cards[{index}].subtitle must be a string")
     template = d.get("template", "post")
     if not isinstance(template, str):
         raise ManifestError(f"cards[{index}].template must be a string")
-    return Card(title=title, out=out, subtitle=subtitle, template=template)
+    return Card(
+        title=title,
+        out=out,
+        subtitle=_opt_str(d.get("subtitle"), index, "subtitle"),
+        kicker=_opt_str(d.get("kicker"), index, "kicker"),
+        footer=_opt_str(d.get("footer"), index, "footer"),
+        label=_opt_str(d.get("label"), index, "label"),
+        template=template,
+    )
+
+
+def _opt_str(value: Any, index: int, field: str) -> str | None:
+    if value is not None and not isinstance(value, str):
+        raise ManifestError(f"cards[{index}].{field} must be a string")
+    return value

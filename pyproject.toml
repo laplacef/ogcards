@@ -4,12 +4,12 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ogcards"
-version = "0.1.0"
+version = "0.2.0"
 description = "Build-time Open Graph card generator for any static site. Manifest in, PNGs out, one dependency."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
-license-files = ["LICENSE", "src/ogcards/fonts/OFL.txt"]
+license-files = ["LICENSE", "src/ogcards/fonts/OFL.txt", "src/ogcards/fonts/SourceSerif4-OFL.txt"]
 authors = [{ name = "Francisco Laplace" }]
 keywords = ["open-graph", "og-image", "social-card", "static-site", "pillow", "ssg"]
 classifiers = [

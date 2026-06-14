@@ -19,11 +19,15 @@ _HEX = re.compile(r"^#[0-9a-fA-F]{6}$")
 
 @dataclass(frozen=True)
 class Canvas:
-    """Card dimensions and background fill."""
+    """Card dimensions, background, and an optional inset panel."""
 
     width: int = 1200
     height: int = 630
     background: str = "#ffffff"
+    panel_background: str | None = None
+    panel_border: str | None = None
+    panel_inset: int = 32
+    panel_radius: int = 16
 
 
 @dataclass(frozen=True)
@@ -89,6 +93,10 @@ def _canvas(d: dict[str, Any]) -> Canvas:
         width=_pos_int(d.get("width", 1200), "canvas.width"),
         height=_pos_int(d.get("height", 630), "canvas.height"),
         background=_color(d.get("background", "#ffffff"), "canvas.background"),
+        panel_background=_opt_color(d.get("panel_background"), "canvas.panel_background"),
+        panel_border=_opt_color(d.get("panel_border"), "canvas.panel_border"),
+        panel_inset=_pos_int(d.get("panel_inset", 32), "canvas.panel_inset"),
+        panel_radius=_pos_int(d.get("panel_radius", 16), "canvas.panel_radius"),
     )
 
 
@@ -124,6 +132,10 @@ def _color(value: Any, where: str) -> str:
     if not isinstance(value, str) or not _HEX.match(value):
         raise ConfigError(f"{where}: expected a #RRGGBB hex color, got {value!r}")
     return value
+
+
+def _opt_color(value: Any, where: str) -> str | None:
+    return None if value is None else _color(value, where)
 
 
 def _pos_int(value: Any, where: str) -> int:

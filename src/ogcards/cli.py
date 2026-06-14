@@ -73,7 +73,15 @@ def _build(args: argparse.Namespace) -> int:
 
 def _preview(args: argparse.Namespace) -> int:
     theme = load_theme(Path(args.config)) if args.config else Theme()
-    card = Card(title=args.title, out=args.out, subtitle=args.subtitle, template=args.template)
+    card = Card(
+        title=args.title,
+        out=args.out,
+        subtitle=args.subtitle,
+        kicker=args.kicker,
+        footer=args.footer,
+        label=args.label,
+        template=args.template,
+    )
     dest = Path(args.out)
     dest.parent.mkdir(parents=True, exist_ok=True)
     render_card(card, theme.template(card.template), theme).save(dest, "PNG", optimize=True)
@@ -123,6 +131,9 @@ def main(argv: list[str] | None = None) -> int:
     preview = sub.add_parser("preview", help="render a single card for design iteration")
     preview.add_argument("--title", required=True)
     preview.add_argument("--subtitle")
+    preview.add_argument("--kicker", help="small tracked label above the title")
+    preview.add_argument("--footer", help="footer text, bottom-left (e.g. name/domain)")
+    preview.add_argument("--label", help="footer text, bottom-right (e.g. date)")
     preview.add_argument("--template", default="post")
     preview.add_argument("--config", help="optional ogcards.toml; omit for defaults")
     preview.add_argument("--out", default="card.png")
